@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/dohill06/techdegree-project-8/issues"
   },
-  "homepage": "https://github.com/dohill06/techdegree-project-8#readme"
+  "homepage": "https://github.com/dohill06/techdegree-project-8#readme",
+  "dependencies": {
+    "express": "^4.17.0"
+  }
 }
