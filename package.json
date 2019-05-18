@@ -19,6 +19,7 @@
   "homepage": "https://github.com/dohill06/techdegree-project-8#readme",
   "dependencies": {
     "express": "^4.17.0",
-    "pug": "^2.0.3"
+    "pug": "^2.0.3",
+    "sequelize": "^5.8.6"
   }
 }
