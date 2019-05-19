@@ -37,5 +37,7 @@ app.get('/books/:id/delete', (req, res) => {
 
 
 sequelize.sync().then(() => {
-    app.listen(3000);
+    app.listen(3000, () => {
+        console.log('The app is running on localhost:3000');
+    });
 });
