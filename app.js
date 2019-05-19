@@ -23,7 +23,7 @@ app.get('/books', (req, res) => {
 });
 
 app.get('/books/new', (req, res) => {
-    res.render('new-book', {title: 'New Book'})
+    res.render('new-book', {title: 'New Book'});
 });
 
 app.post('/books/new', (req, res) => {
