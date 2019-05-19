@@ -1,9 +1,9 @@
 doctype html
 html(lang="en")
     head
-        title Books
+        title= title
     body
-        h1 Books
+        h1= title
         p
             a.button(href='/books/new') Create New Book
         table
@@ -13,4 +13,3 @@ html(lang="en")
                     th Author
                     th Genre
                     th Year
-                    
