@@ -4,6 +4,7 @@ const sequelize = require('./models').sequelize;
 
 const app = express();
 
+app.use('/static', express.static('public'));
 app.set('view engine', 'pug');
 
 
