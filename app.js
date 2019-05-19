@@ -1,6 +1,6 @@
 const express = require('express');
 const sequelize = require('./models').sequelize;
-
+const Book = require('./models').Book;
 
 const app = express();
 
