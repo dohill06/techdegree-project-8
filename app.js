@@ -16,7 +16,10 @@ app.get('/', (req, res) => {
 app.get('/books', (req, res) => {
     Book.findAll({order: [['author', 'ASC']]}).then((books) => {
         res.render('index', {books: books, title: 'Books'});
-    })
+    }).catch((err) => {
+        res.render('error', {error: err});
+        console.log(err);
+    });
 });
 
 app.get('/books/new', (req, res) => {
