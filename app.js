@@ -14,7 +14,9 @@ app.get('/', (req, res) => {
 });
 
 app.get('/books', (req, res) => {
-    res.render('index', {title: 'Books'});
+    Book.findAll({order: [['title', 'ASC']]}).then((books) => {
+        res.render('index', {books: books, title: 'Books'});
+    })
 });
 
 app.get('/books/new', (req, res) => {
