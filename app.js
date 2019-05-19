@@ -31,7 +31,16 @@ app.post('/books/new', (req, res) => {
 });
 
 app.get('/books/:id', (req, res) => {
-
+    Book.findByPk(req.params.id).then((book) => {
+        if(book) {
+            res.render('update-book', {book: book, title: 'Update Book'});
+        } else {
+            res.render('error');
+        }
+    }).catch((err) => {
+        res.render('error', {error: err});
+        console.log(err);        
+    });
 });
 
 app.post('/books/:id', (req, res) => {
