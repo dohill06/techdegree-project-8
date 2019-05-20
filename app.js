@@ -38,8 +38,8 @@ app.get('/books/:id', (req, res) => {
         if(book) {
             res.render('update-book', {book, title: 'Update Book'});
         } else {            
-            res.render('error', {error: '404'});
-            console.log('error');
+            res.render('page-not-found');
+            console.log('error 404');
         }
     }).catch((err) => {
         res.render('error', {error: err});
