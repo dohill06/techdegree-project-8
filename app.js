@@ -51,8 +51,12 @@ app.post('/books/:id', (req, res) => {
 
 });
 
-app.get('/books/:id/delete', (req, res) => {
-
+app.post('/books/:id/delete', (req, res) => {
+    Book.findByPk(req.params.id).then((book) => {
+        book.destroy();
+    }).then(() => {
+        res.redirect('/');
+    })
 });
 
 
