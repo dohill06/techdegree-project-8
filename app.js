@@ -52,7 +52,7 @@ app.post('/books/:id', (req, res) => {
     Book.findByPk(req.params.id).then((book) => {
         book.update(req.body);
     }).then((book) => {
-        res.redirect(`/books/${book.id}`);
+        res.redirect('/');
     })
 });
 
