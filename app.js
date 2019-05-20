@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 
 app.get('/books', (req, res) => {
     Book.findAll({order: [['author', 'ASC']]}).then((books) => {
-        res.render('index', {books: books, title: 'Books'});
+        res.render('index', {books, title: 'Books'});
     }).catch((err) => {
         res.render('error', {error: err});
         console.log(err);
@@ -37,7 +37,7 @@ app.post('/books/new', (req, res) => {
 app.get('/books/:id', (req, res) => {
     Book.findByPk(req.params.id).then((book) => {
         if(book) {
-            res.render('update-book', {book: book, title: 'Update Book'});
+            res.render('update-book', {book, title: 'Update Book'});
         } else {            
             res.render('error', {error: '404'});
             console.log('error');
