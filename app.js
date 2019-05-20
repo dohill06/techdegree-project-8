@@ -39,7 +39,7 @@ app.get('/books/:id', (req, res) => {
         if(book) {
             res.render('update-book', {book: book, title: 'Update Book'});
         } else {            
-            res.render('error');
+            res.render('error', {error: '404'});
             console.log('error');
         }
     }).catch((err) => {
