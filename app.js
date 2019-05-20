@@ -33,13 +33,14 @@ app.post('/books/new', (req, res) => {
     })
 });
 
-app.get('/books/:id', (req, res) => {
+app.get('/books/:id', (req, res, next) => {
     Book.findByPk(req.params.id).then((book) => {
         if(book) {
             res.render('update-book', {book, title: 'Update Book'});
         } else {            
-            res.render('page-not-found');
-            console.log('error 404');
+            const err = new Error('Sorry, no id found.');
+            err.status = 404;
+            next(err);
         }
     }).catch((err) => {
         res.render('error', {error: err});
@@ -60,6 +61,12 @@ app.post('/books/:id/delete', (req, res) => {
         res.render('error', {error: err});
         console.log(err);        
     });
+});
+
+app.use((err, req, res, next) => {
+    res.locals.error = err;
+    res.status(err.status);
+    res.render('error');
 });
 
 
