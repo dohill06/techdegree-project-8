@@ -65,8 +65,9 @@ app.post('/books/:id/delete', (req, res) => {
 
 app.use((req, res, next) => {
     const err = new Error('Page Not Found');
-    err.status - 404;
-    next(err);
+    err.status = 404;
+    res.status(err.status);
+    res.render('page-not-found');
 });
 
 app.use((err, req, res, next) => {
