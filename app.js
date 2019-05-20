@@ -7,6 +7,8 @@ const app = express();
 app.use('/static', express.static('public'));
 app.set('view engine', 'pug');
 
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
 
 
 app.get('/', (req, res) => {
@@ -27,7 +29,9 @@ app.get('/books/new', (req, res) => {
 });
 
 app.post('/books/new', (req, res) => {
-
+    Book.create(req.body).then((book) => {
+        res.redirect(`/books/${book.id}`);
+    })
 });
 
 app.get('/books/:id', (req, res) => {
