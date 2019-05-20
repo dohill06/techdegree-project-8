@@ -29,7 +29,7 @@ app.get('/books/new', (req, res) => {
 
 app.post('/books/new', (req, res) => {
     Book.create(req.body).then((book) => {
-        res.redirect(`/books/${book.id}`);
+        res.redirect('/');
     })
 });
 
