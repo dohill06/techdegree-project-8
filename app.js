@@ -57,7 +57,10 @@ app.post('/books/:id/delete', (req, res) => {
         book.destroy();
     }).then(() => {
         res.redirect('/');
-    })
+    }).catch((err) => {
+        res.render('error', {error: err});
+        console.log(err);        
+    });
 });
 
 
