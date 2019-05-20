@@ -38,9 +38,9 @@ app.get('/books/:id', (req, res) => {
     Book.findByPk(req.params.id).then((book) => {
         if(book) {
             res.render('update-book', {book: book, title: 'Update Book'});
-        } else {
-            console.log('error');
+        } else {            
             res.render('error');
+            console.log('error');
         }
     }).catch((err) => {
         res.render('error', {error: err});
