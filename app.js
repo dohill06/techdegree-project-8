@@ -68,10 +68,10 @@ app.post('/books/:id', (req, res) => {
         } else {
             throw err;
         }
-    }).catch((err) => {
-        res.render('error', {error: err});
-        console.log(err);        
-    });
+        }).catch((err) => {
+            res.render('error', {error: err});
+            console.log(err);        
+        });
 });
 
 app.post('/books/:id/delete', (req, res) => {
