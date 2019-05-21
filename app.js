@@ -28,9 +28,18 @@ app.get('/books/new', (req, res) => {
 });
 
 app.post('/books/new', (req, res) => {
-    Book.create(req.body).then((book) => {
+    Book.create(req.body).then(() => {
         res.redirect('/');
-    })
+    }).catch((err) => {
+        if(err.name === 'SequelizeValidationError') {
+            res.render('new-book', {title: 'New Book', errors: err.errors});
+        } else {
+            throw err;
+        }
+    }).catch((err) => {
+        res.render('error', {error: err});
+        console.log(err);        
+    });
 });
 
 app.get('/books/:id', (req, res, next) => {
@@ -51,9 +60,18 @@ app.get('/books/:id', (req, res, next) => {
 app.post('/books/:id', (req, res) => {
     Book.findByPk(req.params.id).then((book) => {
         book.update(req.body);
-    }).then((book) => {
-        res.redirect('/');
-    })
+    }).then(() => {
+            res.redirect('/');
+        }).catch((err) => {
+        if(err.name === 'SequelizeValidationError') {
+            res.render('update-book', {book, title: 'Update Book', errors: err.errors});
+        } else {
+            throw err;
+        }
+    }).catch((err) => {
+        res.render('error', {error: err});
+        console.log(err);        
+    });
 });
 
 app.post('/books/:id/delete', (req, res) => {
