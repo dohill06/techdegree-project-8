@@ -7,7 +7,9 @@ const app = express();
 app.set('view engine', 'pug');
 
 app.use('/static', express.static('public'));
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({
+    extended: false
+}));
 
 
 app.get('/', (req, res) => {
@@ -15,45 +17,66 @@ app.get('/', (req, res) => {
 });
 
 app.get('/books', (req, res) => {
-    Book.findAll({order: [['author', 'ASC']]}).then((books) => {
-        res.render('index', {books, title: 'Books'});
+    Book.findAll({
+        order: [
+            ['author', 'ASC']
+        ]
+    }).then((books) => {
+        res.render('index', {
+            books,
+            title: 'Books'
+        });
     }).catch((err) => {
-        res.render('error', {error: err});
+        res.render('error', {
+            error: err
+        });
         console.log(err);
     });
 });
 
 app.get('/books/new', (req, res) => {
-    res.render('new-book', {title: 'New Book'});
+    res.render('new-book', {
+        title: 'New Book'
+    });
 });
 
 app.post('/books/new', (req, res) => {
     Book.create(req.body).then(() => {
         res.redirect('/');
     }).catch((err) => {
-        if(err.name === 'SequelizeValidationError') {
-            res.render('new-book', {title: 'New Book', errors: err.errors});
+        if (err.name === 'SequelizeValidationError') {
+            res.render('new-book', {
+                title: 'New Book',
+                errors: err.errors
+            });
         } else {
             throw err;
         }
     }).catch((err) => {
-        res.render('error', {error: err});
-        console.log(err);        
+        res.render('error', {
+            error: err
+        });
+        console.log(err);
     });
 });
 
 app.get('/books/:id', (req, res, next) => {
     Book.findByPk(req.params.id).then((book) => {
-        if(book) {
-            res.render('update-book', {book, title: 'Update Book'});
-        } else {            
+        if (book) {
+            res.render('update-book', {
+                book,
+                title: 'Update Book'
+            });
+        } else {
             const err = new Error('Sorry, no id found.');
             err.status = 404;
             next(err);
         }
     }).catch((err) => {
-        res.render('error', {error: err});
-        console.log(err);        
+        res.render('error', {
+            error: err
+        });
+        console.log(err);
     });
 });
 
@@ -61,17 +84,23 @@ app.post('/books/:id', (req, res) => {
     Book.findByPk(req.params.id).then((book) => {
         book.update(req.body);
     }).then(() => {
-            res.redirect('/');
-        }).catch((err) => {
-        if(err.name === 'SequelizeValidationError') {
-            res.render('update-book', {book, title: 'Update Book', errors: err.errors});
+        res.redirect('/');
+    }).catch((err) => {
+        if (err.name === 'SequelizeValidationError') {
+            res.render('update-book', {
+                book,
+                title: 'Update Book',
+                errors: err.errors
+            });
         } else {
             throw err;
         }
-        }).catch((err) => {
-            res.render('error', {error: err});
-            console.log(err);        
+    }).catch((err) => {
+        res.render('error', {
+            error: err
         });
+        console.log(err);
+    });
 });
 
 app.post('/books/:id/delete', (req, res) => {
@@ -80,8 +109,10 @@ app.post('/books/:id/delete', (req, res) => {
     }).then(() => {
         res.redirect('/');
     }).catch((err) => {
-        res.render('error', {error: err});
-        console.log(err);        
+        res.render('error', {
+            error: err
+        });
+        console.log(err);
     });
 });
 
