@@ -1,7 +1,7 @@
 const express = require('express');
 const sequelize = require('./models').sequelize;
 const Book = require('./models').Book;
-const Op = sequelize.Op;
+
 
 const app = express();
 
