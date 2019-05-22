@@ -82,8 +82,8 @@ app.get('/books/:id', (req, res, next) => {
 
 app.post('/books/:id', (req, res) => {
     Book.findByPk(req.params.id).then((book) => {
-        book.update(req.body);
-    }).then(() => {
+        book.update(req.body)
+            .then(() => {
         res.redirect('/');
     }).catch((err) => {
         if (err.name === 'SequelizeValidationError') {
