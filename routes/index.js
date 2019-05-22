@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 const Book = require('../models').Book;
 
-
+// home route redirect
 router.get('/', (req, res) => {
     res.redirect('/books');
 });
-
+// book listing route
 router.get('/books', (req, res) => {
     Book.findAll({
         order: [
@@ -24,13 +24,13 @@ router.get('/books', (req, res) => {
         console.log(err);
     });
 });
-
+// new book form route
 router.get('/books/new', (req, res) => {
     res.render('new-book', {
         title: 'New Book'
     });
 });
-
+// add new book form route
 router.post('/books/new', (req, res) => {
     Book.create(req.body).then(() => {
         res.redirect('/');
@@ -50,7 +50,7 @@ router.post('/books/new', (req, res) => {
         console.log(err);
     });
 });
-
+// book detail update form route
 router.get('/books/:id', (req, res, next) => {
     Book.findByPk(req.params.id).then((book) => {
         if (book) {
@@ -70,7 +70,7 @@ router.get('/books/:id', (req, res, next) => {
         console.log(err);
     });
 });
-
+// add update detail form route
 router.post('/books/:id', (req, res) => {
     Book.findByPk(req.params.id).then((book) => {
         book.update(req.body).then(() => {
@@ -94,7 +94,7 @@ router.post('/books/:id', (req, res) => {
             });
     });
 });
-
+// delete book route
 router.post('/books/:id/delete', (req, res) => {
     Book.findByPk(req.params.id).then((book) => {
         book.destroy();
@@ -107,5 +107,5 @@ router.post('/books/:id/delete', (req, res) => {
         console.log(err);
     });
 });
-
+// export router
 module.exports = router;
