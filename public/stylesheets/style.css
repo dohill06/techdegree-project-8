@@ -95,13 +95,3 @@ input[type=text] {
 .error {
   color: rgb(236, 15, 15);
 }
-
-#search {
-  margin-left: 0em;
-  width: 640px;
-}
-
-#search-submit {
-  margin-left: 0em;
-  padding-top: 12px;
-}
