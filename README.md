@@ -1,8 +1,6 @@
-# techdegree-project-8
+# SQL Library Manager
 
-SQL Library Manager
-
-Implements a dynamic website using JavaScript, Node.js, Express, Pug, and the SQL ORM Sequelize that'll include pages to list, add, update, and delete books.
+This web app is for a fictional library to help them manage their collection of books. It includes pages to list, add, update, and delete books using JavaScript, Node.js, Express, Pug, and the SQL ORM Sequelize. This project was created for the purpose of the Treehouse Full Stack JavaScript Techdegree.
 
 Run npm install to install all necessary dependencies.
 
