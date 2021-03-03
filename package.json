@@ -19,7 +19,7 @@
   "homepage": "https://github.com/dohill06/techdegree-project-8#readme",
   "dependencies": {
     "express": "^4.17.0",
-    "pug": "^2.0.3",
+    "pug": "^3.0.1",
     "sequelize": "^5.8.6",
     "sequelize-cli": "^5.4.0",
     "sqlite3": "^4.0.8"
